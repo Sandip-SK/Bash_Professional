@@ -1,8 +1,56 @@
 # Bash for SRE and DevOps Engineers
 
-A practical learning roadmap for mastering Bash in real-world operations, automation, troubleshooting, and infrastructure work.
+## A Practical Shell Scripting Handbook for Operations Teams
 
-This repository is designed like a book: each lesson builds the foundation needed to write reliable shell scripts for system administration, monitoring, deployment support, and incident response.
+> “The fastest way to understand a system is often to automate the check, log the symptom, and script the fix.”
+
+This repository is designed like a book for engineers working in operations, reliability, platform engineering, cloud support, and DevOps. Each lesson builds a practical skill needed to monitor systems, automate routine tasks, investigate incidents, and improve service health with Bash.
+
+Whether you are new to shell scripting or already comfortable with basic commands, this guide helps you move from simple commands to production-style automation.
+
+---
+
+## Who this is for
+
+This course is ideal for:
+
+- SRE engineers
+- DevOps engineers
+- platform engineers
+- Linux administrators
+- cloud support engineers
+- developers who want stronger operational scripting skills
+
+---
+
+## Prerequisites
+
+Before starting, make sure you are comfortable with:
+
+- basic Linux command-line usage
+- file and directory navigation
+- text editors such as `nano`, `vim`, or `code`
+- running scripts from the terminal
+
+You do not need advanced Bash knowledge to start. The exercises are intentionally practical and beginner-friendly.
+
+---
+
+## Table of Contents
+
+1. [Why Bash matters for SRE and DevOps](#why-bash-matters-for-sre-and-devops)
+2. [How to use this repository](#how-to-use-this-repository)
+3. [Learning path](#learning-path)
+4. [Beginner track](#beginner-track)
+5. [Intermediate track](#intermediate-track)
+6. [Advanced track](#advanced-track)
+7. [Daily SRE Command Cheat Sheet](#daily-sre-command-cheat-sheet)
+8. [Core Bash concepts you should master](#core-bash-concepts-you-should-master)
+9. [Suggested practice routine](#suggested-practice-routine)
+10. [Example real-world exercises](#example-real-world-exercises)
+11. [Tips for writing production-ready Bash scripts](#tips-for-writing-production-ready-bash-scripts)
+12. [Recommended next steps](#recommended-next-steps)
+13. [Repository structure](#repository-structure)
 
 ---
 
@@ -37,7 +85,9 @@ The goal is not to memorize syntax alone, but to become comfortable thinking in 
 
 ## Learning path
 
-### Chapter 1: Bash Foundations
+### Beginner track
+
+#### Chapter 1: Bash Foundations
 Location: `Lesson1-Variables`
 
 Focus:
@@ -47,7 +97,7 @@ Focus:
 - command substitution
 - script execution patterns
 
-This chapter teaches the language building blocks you need before handling production automation.
+This chapter teaches the language building blocks used in real automation work.
 
 Key ideas:
 - variable assignment and scope
@@ -55,9 +105,7 @@ Key ideas:
 - capturing command output and reusing it
 - writing clean, readable shell scripts
 
----
-
-### Chapter 2: Conditionals and Loops
+#### Chapter 2: Conditionals and Loops
 Location: `Lesson2-Conditionals`
 
 Focus:
@@ -90,7 +138,9 @@ This is the kind of logic SREs use to validate infrastructure and endpoints.
 
 ---
 
-### Chapter 3: Functions and Reusable Automation
+### Intermediate track
+
+#### Chapter 3: Functions and Reusable Automation
 Location: `Lesson3-Functions`
 
 Focus:
@@ -107,16 +157,14 @@ Typical use cases:
 - validating environment configuration
 - preparing a pre-deployment health script
 
----
-
-### Chapter 4: Log Analysis and Troubleshooting
-Location: `Lesson4-LogAnalysis`
+#### Chapter 4: Log Analysis and Troubleshooting with AWK
+Location: `Lesson4-LogAnalysisUsingAWK`
 
 Focus:
-- analyzing logs with `grep`, `awk`, and filtering
+- analyzing logs with `awk`
+- extracting data from log files
 - identifying error patterns
-- working with large operational data sets
-- extracting meaningful information from logs
+- summarizing operational metrics
 
 This is a core SRE skill. Most incidents begin with logs. You need to quickly answer:
 - What failed?
@@ -125,6 +173,87 @@ This is a core SRE skill. Most incidents begin with logs. You need to quickly an
 - How many errors appeared?
 
 This chapter introduces practical log investigation workflows used in production support.
+
+---
+
+### Advanced track
+
+#### Chapter 5: Advanced Log Searching and Pattern Matching
+Location: `Lesson5-LogAnalysisUsingGrep`
+
+Focus:
+- advanced use of `grep`
+- matching patterns in logs
+- filtering by severity, host, and status
+- operational triage at scale
+
+At the advanced stage, scripting is less about syntax and more about speed and precision. You need to find the right signal in noisy logs, isolate anomalies, and build repeatable investigation workflows.
+
+This level prepares you for incident response, debugging production systems, and supporting large distributed environments.
+
+---
+
+## Daily SRE Command Cheat Sheet
+
+These commands appear frequently in real-world infrastructure and incident workflows.
+
+```bash
+# Check connectivity
+ping -c 1 google.com
+
+# Show system uptime
+uptime
+
+# View disk usage
+df -h
+
+# Show memory usage
+free -m
+
+# Check running processes
+ps aux | grep nginx
+
+# Show service status
+systemctl status nginx
+
+# Start or restart a service
+sudo systemctl restart nginx
+
+# View recent logs for a service
+journalctl -u nginx -n 50 --no-pager
+
+# Search logs for errors
+grep -iE "error|fail|exception" /var/log/syslog
+
+# Search for a specific term in a file
+grep -i "timeout" app.log
+
+# Count occurrences
+grep -c "ERROR" app.log
+
+# Show the last 20 lines of a log file
+tail -n 20 app.log
+
+# Follow a log in real time
+tail -f /var/log/syslog
+
+# Check open ports
+ss -tuln
+
+# Check HTTP response headers
+curl -I http://localhost
+
+# Check if a directory exists
+[ -d /var/log ] && echo "exists"
+
+# Check if a file exists
+[ -f /etc/nginx/nginx.conf ] && echo "config exists"
+
+# Loop over servers
+for host in web01 web02 web03; do ping -c 1 "$host" >/dev/null && echo "$host UP" || echo "$host DOWN"; done
+```
+
+This cheat sheet is a practical reference for daily troubleshooting and automation tasks.
 
 ---
 
@@ -206,23 +335,6 @@ Common tools:
 
 ---
 
-## Bash for daily SRE and DevOps work
-
-Bash is used for many operational tasks, including:
-
-- checking whether servers are reachable
-- verifying service status
-- restarting failed services
-- parsing incident logs
-- collecting system health data
-- creating deployment sanity checks
-- handling backup and cleanup tasks
-- integrating with monitoring and automation jobs
-
-A practical Bash script is often the fastest way to automate repetitive operational work.
-
----
-
 ## Suggested practice routine
 
 To become strong in Bash, practice in this order:
@@ -257,25 +369,6 @@ Parse logs and identify the affected service, time range, and failure pattern.
 
 ---
 
-## Common SRE Bash commands
-
-```bash
-ssh user@server
-systemctl status nginx
-journalctl -u nginx -n 50
-grep -i error /var/log/syslog
-df -h
-free -m
-ps aux | grep nginx
-netstat -tuln
-ping -c 1 google.com
-curl -I http://localhost
-```
-
-These are the kinds of commands that often appear in operational workflows, and Bash helps you automate them.
-
----
-
 ## Tips for writing production-ready Bash scripts
 
 - Keep scripts simple and readable
@@ -304,20 +397,21 @@ The goal is to move from writing simple scripts to building reliable operational
 
 ---
 
-## Final thought
-
-Bash is not just a language for quick commands; it is a core operational skill for SRE and DevOps engineers. The real value comes from using it to automate routine checks, solve incidents faster, and make system troubleshooting repeatable.
-
-This repository is your starting point. Practice often, build small scripts, and turn repeated human tasks into automation.
-
----
-
 ## Repository structure
 
 - `Lesson1-Variables` — variables, environment values, and shell basics
 - `Lesson2-Conditionals` — conditionals, loops, and connectivity checks
 - `Lesson3-Functions` — reusable automation patterns
-- `Lesson4-LogAnalysis` — logs, filtering, and troubleshooting with `awk`/text tools
+- `Lesson4-LogAnalysisUsingAWK` — logs, filtering, and troubleshooting with `awk`
+- `Lesson5-LogAnalysisUsingGrep` — search and pattern matching for incident triage
+
+---
+
+## Final chapter: Build operational confidence
+
+Bash is not just a language for quick commands; it is a core operational skill for SRE and DevOps engineers. The real value comes from using it to automate routine checks, solve incidents faster, and make system troubleshooting repeatable.
+
+This repository is your starting point. Practice often, build small scripts, and turn repeated human tasks into automation.
 
 ---
 

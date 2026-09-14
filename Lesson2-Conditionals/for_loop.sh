@@ -1,12 +1,7 @@
-# Write a Bash script that accepts multiple server names and checks each server.
-# Modify it so that it:
-
-# Prints Checking <server>...
-# Uses ping to check whether the server is reachable
-# Prints:
-# UP if ping succeeds
-# DOWN if ping fails
 #!/bin/bash
+# This script checks multiple servers passed as command-line arguments.
+# For each server, it prints the status and marks it as UP or DOWN.
+# This is a common operational pattern used for quick health validation.
 
 for server in "$@"; do
     echo "Checking $server..."
@@ -17,3 +12,6 @@ for server in "$@"; do
         echo "$server: DOWN"
     fi
 done
+
+# Example usage:
+# ./for_loop.sh web01 web02 google.com

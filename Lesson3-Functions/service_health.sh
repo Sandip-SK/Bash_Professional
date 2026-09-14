@@ -1,19 +1,11 @@
 #!/bin/bash
-# Write the complete server_health.sh.
+# This script performs a basic server health check.
+# It validates disk usage, memory usage, and a critical service.
+# This pattern is commonly used in SRE scripts before deployment or maintenance.
 
-# Start with:
-
-# #!/bin/bash
-
-# set -euo pipefail
-
-# overall_status=0
-
-# Then implement the three functions and the checks.
-# check_disk
-# check_memory
-# check_service
 set -euo pipefail
+
+overall_status=0
 
 check_disk() {
     local threshold=$1
@@ -52,8 +44,6 @@ check_service() {
         return 1
     fi
 }
-
-overall_status=0
 
 if ! check_disk 90; then
     overall_status=1

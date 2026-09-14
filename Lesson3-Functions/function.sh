@@ -1,21 +1,7 @@
-# Write a function:
-
-# check_disk()
-
-# that:
-
-# Gets the disk usage of /
-# Accepts a threshold as an argument
-# Prints WARNING if usage exceeds the threshold
-# Prints OK otherwise
-# Returns exit code:
-# 0 → disk healthy
-# 1 → disk usage exceeded threshold
-
-# Then call it:
-
-# check_disk 90
 #!/bin/bash
+# This script demonstrates a reusable Bash function for monitoring disk usage.
+# It checks whether the root filesystem exceeds a threshold and returns
+# a status code that makes it easy to use in automation.
 
 check_disk() {
     local threshold=$1
@@ -35,3 +21,7 @@ if check_disk 90; then
 else
     echo "Problem detected"
 fi
+
+# Example usage:
+# ./function.sh
+# This will evaluate the current disk usage against 90%.

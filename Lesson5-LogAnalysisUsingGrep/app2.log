@@ -1,0 +1,8 @@
+INFO Request received
+INFO Validating request
+WARN Connection pool almost full
+ERROR Database connection timeout
+INFO Retrying database connection
+INFO Database connection successful
+ERROR Database connection timeout
+WARN Connection pool almost full

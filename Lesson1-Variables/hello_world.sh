@@ -1,4 +1,8 @@
-#!/bin/bash  
-# First Line called the shebang.
-# It tells the operating system which interpreter should execute the script.
+#!/bin/bash
+# Basic Bash script example.
+# The shebang tells the OS which interpreter should run the script.
+# In this case, /bin/bash is used to execute the script.
+
 echo "Hello, World!"
+# This prints a simple message to the terminal.
+# This is the starting point for learning Bash scripting.

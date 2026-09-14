@@ -1,22 +1,23 @@
 #!/bin/bash
-# For numbers:
+# This script demonstrates conditionals used in operational checks.
+# Common numeric comparison operators:
+#   -eq   equal
+#   -ne   not equal
+#   -gt   greater than
+#   -ge   greater than or equal
+#   -lt   less than
+#   -le   less than or equal
 
-# -eq    equal
-# -ne    not equal
-# -gt    greater than
-# -ge    greater than or equal
-# -lt    less than
-# -le    less than or equal
 CPU_USAGE=75
-if [ $CPU_USAGE -gt 80 ]; then
+if [ "$CPU_USAGE" -gt 80 ]; then
     echo "CPU usage is above 80%. Please check your system."
-elif [ $CPU_USAGE -gt 50 ]; then
+elif [ "$CPU_USAGE" -gt 50 ]; then
     echo "CPU usage is above 50%. Please monitor your system."
 else
     echo "CPU usage is normal."
 fi
 
-# Check whether a file exists:
+# Check whether a file exists.
 file_path="/path/to/file.txt"
 if [ -f "$file_path" ]; then
     echo "File exists."
@@ -24,8 +25,7 @@ else
     echo "File does not exist."
 fi
 
-# Check if files is readable(-r), writable(-w), and executable(-x):
-file_path="/path/to/file.txt"
+# Check if a file is readable, writable, and executable.
 if [ -r "$file_path" ]; then
     echo "File is readable."
 else

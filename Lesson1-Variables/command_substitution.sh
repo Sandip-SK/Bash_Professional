@@ -1,12 +1,18 @@
 #!/bin/bash
-# Command substitution allows the output of a command to replace the command itself.
-# Command substitution occurs when a command is enclosed as follows:
-# $(command) or `command`
-# The output of the command is substituted in place of the command itself.
-# Example:
+# Command substitution captures the output of a command and uses it as data.
+# Syntax:
+#   $(command)
+#   `command`  (older style, still valid but less common)
+
 current_date=$(date)
 echo "Current date and time: $current_date"
+
 HOSTNAME=$(hostname)
 echo "Hostname: $HOSTNAME"
-PODS=$(kubectl get pods --no-headers | wc -l)
+
+# Example from Kubernetes operations:
+# This counts the number of running pods in the current cluster context.
+PODS=$(kubectl get pods --no-headers 2>/dev/null | wc -l)
 echo "Number of pods: $PODS"
+
+# This pattern is useful in SRE scripts for collecting runtime values dynamically.
