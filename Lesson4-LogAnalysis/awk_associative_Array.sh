@@ -1,0 +1,1 @@
+awk '{count[$6]++} END {for (status in count) print status, count[status]}' example1.log

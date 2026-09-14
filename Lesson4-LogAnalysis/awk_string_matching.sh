@@ -1,0 +1,1 @@
+awk '$2 == "production" {print $1}' servers3.txt

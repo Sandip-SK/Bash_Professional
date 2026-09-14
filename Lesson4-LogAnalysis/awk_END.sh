@@ -1,0 +1,1 @@
+awk '{count++} END {print "Total lines:", count}' awk1.log

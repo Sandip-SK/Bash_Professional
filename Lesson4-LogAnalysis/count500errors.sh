@@ -1,0 +1,1 @@
+grep "500$" example1.log | wc -l

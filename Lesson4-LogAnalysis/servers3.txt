@@ -1,0 +1,4 @@
+server1 production
+server2 staging
+server3 production
+server4 development
