@@ -1,0 +1,5 @@
+INFO Application started
+DEBUG Connecting to DB
+ERROR Database timeout
+DEBUG Retrying
+INFO Request successful

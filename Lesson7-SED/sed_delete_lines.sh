@@ -1,0 +1,1 @@
+sed '/DEBUG/d' app.log
