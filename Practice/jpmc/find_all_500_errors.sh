@@ -1,0 +1,1 @@
+awk '$4 > 499 && $4 < 600 {print $0}' access.log

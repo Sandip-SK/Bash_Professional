@@ -1,0 +1,7 @@
+10.0.0.1 GET /api 500
+10.0.0.2 GET /payment 503
+10.0.0.1 POST /checkout 502
+10.0.0.3 GET /home 200
+10.0.0.2 POST /payment 500
+10.0.0.1 GET /users 503
+10.0.0.4 GET /api 500
