@@ -1,0 +1,7 @@
+/api/users 200 120
+/api/orders 200 850
+/api/payment 500 2100
+/api/users 200 150
+/api/orders 504 1800
+/api/payment 200 900
+/api/search 200 1400
