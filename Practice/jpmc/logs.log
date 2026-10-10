@@ -1,0 +1,6 @@
+2026-10-10 10:02:15 INFO request completed
+2026-10-10 10:04:21 ERROR database timeout
+2026-10-10 10:09:43 ERROR payment failed
+2026-10-10 10:12:05 INFO health check passed
+2026-10-10 10:15:00 ERROR connection refused
+2026-10-10 10:17:30 ERROR request failed
