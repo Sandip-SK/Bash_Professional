@@ -1,24 +1,38 @@
-# Production incident: Build a log-analysis script
-# Hard
-# An API is experiencing elevated errors. The interviewer asks you to write a reusable Bash script named analyze_logs.sh that accepts a log filename as its first argument.
-# Each log line follows this format:
-# IP METHOD PATH STATUS
+#!/usr/bin/env bash
+set -euo pipefail
 
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 <logfile>" >&2
+    exit 1
+fi
 
-# Example:
-# 10.0.0.1 GET /health 200
-# 10.0.0.2 GET /api 500
-# 10.0.0.3 POST /payment 503
-# 10.0.0.2 GET /login 502
-# 10.0.0.4 GET /home 404
+filename=$1
 
+if [[ ! -f "$filename" || ! -r "$filename" ]]; then
+    echo "Error: File does not exist or is not readable." >&2
+    exit 1
+fi
 
-# Requirements
-# 1. Check that a filename was provided.
-# 2. Check that the file exists and is readable.
-# 3. Print the total number of requests.
-# 4. Print the number of 5xx responses.
-# 5. Print the 5xx error rate to two decimal places.
-# 6. Print the top 3 IP addresses generating 5xx responses, with the highest count first.
-# 7. Handle an empty file safely.
-# You may use awk, sort, head, and standard Bash constructs.
+awk '
+{
+    total++
+    if ($4 >= 500 && $4 <= 599) {
+        errors++
+        ip_errors[$1]++
+    }
+}
+END {
+    printf "Total requests: %d\n", total
+    printf "5xx responses: %d\n", errors
+
+    if (total > 0)
+        printf "5xx error rate: %.2f%%\n", errors / total * 100
+    else
+        print "5xx error rate: N/A (no requests)"
+}' "$filename"
+
+echo "Top 3 IP addresses generating 5xx responses:"
+
+awk '$4 >= 500 && $4 <= 599 { count[$1]++ }
+     END { for (ip in count) print count[ip], ip }' "$filename" |
+    sort -k1,1nr
